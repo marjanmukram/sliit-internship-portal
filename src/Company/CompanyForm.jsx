@@ -26,10 +26,10 @@ class CompanyForm extends Component {
         <Card>
           <Image src="https://react.semantic-ui.com/images/avatar/large/matthew.png" />
           <Card.Content>
-            <Card.Header> {this.props.company?this.props.company[0].name:null} </Card.Header>
+            <Card.Header> {this.props.company?this.props.company[0].name:"R Labs"} </Card.Header>
        
           </Card.Content>
-          <Card.Content extra>this.renderStatus(student.status)</Card.Content>
+          <Card.Content extra>Great Place To work 2018</Card.Content>
           <Card.Content><Button onClick={() => { this.props.logout(this.props.history) }} >Logout</Button></Card.Content>
         </Card>
           </Grid.Column>
@@ -49,7 +49,7 @@ class CompanyForm extends Component {
                       </Form.Field>
                       <Form.Field>
                         <label>Supervisor's Phone</label>
-                        <Field name="supNumber" type="text" component="input" />
+                        <Field name="supNumber" type="number" component="input" />
 
                       </Form.Field>
                       <Form.Field>
@@ -59,7 +59,7 @@ class CompanyForm extends Component {
                       </Form.Field>
                       <Form.Field>
                         <label>Supervisor's email</label>
-                        <Field name="supEmail" type="text" component="input" />
+                        <Field name="supEmail" type="email" component="input" />
 
                       </Form.Field>
                       <Form.Field>
@@ -104,9 +104,9 @@ class CompanyForm extends Component {
           <Grid.Column width={2}>
           <div><h3>Interns from Sri Lanka Institute of Information Technology</h3>
           <ul>
-            <li>Amila Nuwan</li>
-          <li>Gigarthan</li>
-          <li>Vithu</li>
+            <li>{this.props.student?this.props.student[0].name:null}</li>
+          <li>{this.props.student?this.props.student[1].name:null}</li>
+          <li>{this.props.student?this.props.student[4].name:null}</li>
           </ul>
           </div>
           </Grid.Column>
@@ -145,7 +145,7 @@ const CompForm = reduxForm({
 
 export default compose(
   firebaseConnect(props => {
-    return ["companies"];
+    return ["companies"],["students"];
   }),
   connect(mapStateToProps, { submitI1Form })
 )(CompForm);
